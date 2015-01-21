@@ -102,6 +102,18 @@ LINK32=link.exe
 SOURCE=..\Source\Startup\Main.cpp
 # End Source File
 # End Group
+# Begin Group "Application"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\Source\Application\Application.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\Application\Application.h
+# End Source File
+# End Group
 # End Group
 # End Target
 # End Project
