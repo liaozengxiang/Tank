@@ -1,10 +1,10 @@
--- ¼òµ¥ AI µÄÊµÏÖ
+-- ç®€å• AI çš„å®ç°
 -- Copyright (C) 2015. All rights reserved
 
 
--- ĞÂµÄ¹Ø¿¨¿ªÊ¼£¬ÓÉ C++ ³ÌĞòµ÷ÓÃ
--- ²ÎÊı:
---       nStageID  ¹Ø¿¨±àĞ´
+-- æ–°çš„å…³å¡å¼€å§‹ï¼Œç”± C++ ç¨‹åºè°ƒç”¨
+-- å‚æ•°:
+--       nStageID  å…³å¡ç¼–å·
 function OnNewStage(nStageID)
 	print("Stage " .. tostring(nStageID) .. " started");
 end
