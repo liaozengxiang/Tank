@@ -10,8 +10,8 @@ public:
 	virtual ~CGameApp();
 
 protected:
-	virtual void OnSetTitle(std::string &strAppTitle);
-	virtual bool InitInstance();
+	virtual bool OnInitInstance(STARTUP_INFO *pInfo);
+	virtual bool OnInitResource();
 };
 
 // 声明全局应用程序实例对象

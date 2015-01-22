@@ -1,4 +1,5 @@
 #include "GameApp.h"
+#include "../Resource/resource.h"
 #include "../Core/Sprite.h"
 
 // 定义全局唯一应用程序实例对象
@@ -12,16 +13,20 @@ CGameApp::~CGameApp()
 {
 }
 
-void CGameApp::OnSetTitle(std::string &strAppTitle)
+bool CGameApp::OnInitInstance(STARTUP_INFO *pInfo)
 {
-	strAppTitle = "坦克大战网络版";
+	pInfo->strTitle   = "坦克大战网络版";
+	pInfo->nIcon      = IDI_MAIN;
+	pInfo->bHideMouse = true;
+
+	return true;
 }
 
-bool CGameApp::InitInstance()
+bool CGameApp::OnInitResource()
 {
-	HTEXTURE hTex = m_pHGE->Texture_Load("Resource/Image/Splash.bmp");
-	CSprite *pSpr = new CSprite(hTex, 0, 0, 376, 222);
-
+	HTEXTURE hTexture = m_pHGE->Texture_Load("Resource/Image/Splash.bmp");
+	CSprite *pSpr = new CSprite(hTexture, 0, 0, 376, 222);
+	
 	AddChild(pSpr);
 	pSpr->MoveTo((800 - pSpr->GetWidth()) / 2, (600 - pSpr->GetHeight()) / 2);
 

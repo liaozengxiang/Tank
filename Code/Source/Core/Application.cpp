@@ -7,7 +7,7 @@ CApplication* CApplication::m_pInstance = NULL;
 
 CApplication::CApplication()
 {
-	m_pHGE = NULL;
+	m_pHGE      = NULL;
 	m_pInstance = this;
 }
 
@@ -22,12 +22,26 @@ CApplication::~CApplication()
 
 bool CApplication::Initialize()
 {
+	m_startupInfo.bHideMouse  = false;
+	m_startupInfo.bShowSplash = true;
+	m_startupInfo.bWindowed   = true;
+	m_startupInfo.nFPS        = 60;
+	m_startupInfo.nWidth      = 800;
+	m_startupInfo.nHeight     = 600;
+	m_startupInfo.strTitle    = "无标题";
+	m_startupInfo.nIcon       = 0;
+
+	if (!OnInitInstance(&m_startupInfo))
+	{
+		return false;
+	}
+
 	if (!InitHGE())
 	{
 		return false;
 	}
 
-	if (!InitInstance())
+	if (!OnInitResource())
 	{
 		return false;
 	}
@@ -48,19 +62,18 @@ bool CApplication::InitHGE()
 		return false;
 	}
 
-	OnSetTitle(m_strAppTitle);
-
-	m_pHGE->System_SetState(HGE_FRAMEFUNC, FrameFunc);						// 帧函数
-	m_pHGE->System_SetState(HGE_RENDERFUNC, RenderFunc);					// 渲染函数
-	m_pHGE->System_SetState(HGE_EXITFUNC, ExitFunc);						// 退出函数
-	m_pHGE->System_SetState(HGE_WINDOWED, true);							// 窗口模式
-	m_pHGE->System_SetState(HGE_SCREENWIDTH, 800);							// 窗口宽度
-	m_pHGE->System_SetState(HGE_SCREENHEIGHT, 600);							// 窗口高度
-	m_pHGE->System_SetState(HGE_TITLE, m_strAppTitle.c_str());				// 窗口标题
-	m_pHGE->System_SetState(HGE_HIDEMOUSE, false);							// 隐藏鼠标
-//	m_pHGE->System_SetState(HGE_SHOWSPLASH, false);							// 不显示启动画面
-	m_pHGE->System_SetState(HGE_DONTSUSPEND, true);							// 失去焦点时程序不挂起
-	m_pHGE->System_SetState(HGE_FPS, 60);
+	m_pHGE->System_SetState(HGE_FRAMEFUNC, FrameFunc);							// 帧函数
+	m_pHGE->System_SetState(HGE_RENDERFUNC, RenderFunc);						// 渲染函数
+	m_pHGE->System_SetState(HGE_EXITFUNC, ExitFunc);							// 退出函数
+	m_pHGE->System_SetState(HGE_WINDOWED, m_startupInfo.bWindowed);				// 窗口模式
+	m_pHGE->System_SetState(HGE_SCREENWIDTH, m_startupInfo.nWidth);				// 窗口宽度
+	m_pHGE->System_SetState(HGE_SCREENHEIGHT, m_startupInfo.nHeight);			// 窗口高度
+	m_pHGE->System_SetState(HGE_TITLE, m_startupInfo.strTitle.c_str());			// 窗口标题
+	m_pHGE->System_SetState(HGE_HIDEMOUSE, m_startupInfo.bHideMouse);			// 隐藏鼠标
+	m_pHGE->System_SetState(HGE_SHOWSPLASH, m_startupInfo.bShowSplash);			// 不显示启动画面
+	m_pHGE->System_SetState(HGE_DONTSUSPEND, true);								// 失去焦点时程序不挂起
+	m_pHGE->System_SetState(HGE_FPS, m_startupInfo.nFPS);						// 设置游戏帧频
+	m_pHGE->System_SetState(HGE_ICON, MAKEINTRESOURCE(m_startupInfo.nIcon));	// 设置应用程序图标
 
 	if (!m_pHGE->System_Initiate())
 	{
@@ -85,23 +98,23 @@ bool CApplication::RenderFunc()
 
 bool CApplication::ExitFunc()
 {
-	m_pInstance->ExitInstance();
+	m_pInstance->OnExitInstance();
 	return true;
 }
 
-bool CApplication::InitInstance()
+bool CApplication::OnInitInstance(STARTUP_INFO *pInfo)
 {
 	return true;
 }
 
-void CApplication::OnSetTitle(std::string &strAppTitle)
-{
-	strAppTitle = "无标题";
-}
-
-void CApplication::ExitInstance()
+void CApplication::OnExitInstance()
 {
 	m_pHGE->System_Shutdown();
+}
+
+bool CApplication::OnInitResource()
+{
+	return true;
 }
 
 void CApplication::OnRender()

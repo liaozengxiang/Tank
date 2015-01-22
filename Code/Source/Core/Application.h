@@ -10,6 +10,18 @@
 #include "Object.h"
 #include <string>
 
+struct STARTUP_INFO
+{
+	int				nWidth;					// 窗口宽度
+	int				nHeight;				// 窗口高度
+	bool			bWindowed;				// 窗口显示还是全屏显示
+	std::string		strTitle;				// 应用程序标题
+	bool			bHideMouse;				// 是否隐藏鼠标
+	bool			bShowSplash;			// 是否显示 hge 的欢迎界面
+	int				nFPS;					// 游戏显示帧频
+	int				nIcon;					// 应用程序图标资源 ID
+};
+
 class CApplication : public CObject
 {
 public:
@@ -20,10 +32,10 @@ public:
 	bool Start();
 
 protected:
-	virtual bool InitInstance();
-	virtual void ExitInstance();
-	virtual void OnSetTitle(std::string &strAppTitle);
-	virtual void OnRender();
+	virtual bool  OnInitInstance(STARTUP_INFO *pInfo);
+	virtual void  OnExitInstance();
+	virtual bool  OnInitResource();
+	virtual void  OnRender();
 
 protected:
 	static CApplication* GetInstance() { return m_pInstance; }
@@ -37,7 +49,7 @@ protected:
 protected:
 	static CApplication*	m_pInstance;					// 全局唯一应用程序实例指针
 	HGE*					m_pHGE;							// hge 引擎指针
-	std::string				m_strAppTitle;					// 应用程序标题
+	STARTUP_INFO			m_startupInfo;					// 启动参数
 };
 
 #endif
