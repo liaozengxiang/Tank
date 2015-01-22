@@ -11,6 +11,7 @@ public:
 
 protected:
 	virtual void OnSetTitle(std::string &strAppTitle);
+	virtual bool InitInstance();
 };
 
 // 声明全局应用程序实例对象
