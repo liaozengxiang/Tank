@@ -1,5 +1,5 @@
 #include <windows.h>
-#include "../Application/Application.h"
+#include "../Application/GameApp.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {

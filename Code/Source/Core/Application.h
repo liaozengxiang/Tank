@@ -7,8 +7,10 @@
 #define ___APPLICATION__20150122___
 
 #include "../hge181/include/hge.h"
+#include "Object.h"
+#include <string>
 
-class CApplication
+class CApplication : public CObject
 {
 public:
 	CApplication();
@@ -18,23 +20,24 @@ public:
 	bool Start();
 
 protected:
-	bool InitHGE();
 	virtual bool InitInstance();
 	virtual void ExitInstance();
+	virtual void OnSetTitle(std::string &strAppTitle);
+	virtual void OnRender();
 
 protected:
+	static CApplication* GetInstance() { return m_pInstance; }
 	static bool FrameFunc();
 	static bool RenderFunc();
 	static bool ExitFunc();
 
-	void OnFrame();
-	void OnRender();
+protected:
+	bool InitHGE();
 
 protected:
-	HGE*					m_pHGE;
+	static CApplication*	m_pInstance;					// 全局唯一应用程序实例指针
+	HGE*					m_pHGE;							// hge 引擎指针
+	std::string				m_strAppTitle;					// 应用程序标题
 };
-
-// 声明全局应用程序实例对象
-extern CApplication theApp;
 
 #endif

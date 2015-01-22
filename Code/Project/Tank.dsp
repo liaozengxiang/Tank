@@ -69,7 +69,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /GZ /c
-# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /GZ /c
+# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /FR /YX /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x804 /d "_DEBUG"
@@ -107,11 +107,31 @@ SOURCE=..\Source\Startup\Main.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\Source\Application\Application.cpp
+SOURCE=..\Source\Application\GameApp.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Source\Application\Application.h
+SOURCE=..\Source\Application\GameApp.h
+# End Source File
+# End Group
+# Begin Group "Core"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\Source\Core\Application.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\Core\Application.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\Core\Object.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\Core\Object.h
 # End Source File
 # End Group
 # End Group
