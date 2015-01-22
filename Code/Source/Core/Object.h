@@ -22,9 +22,12 @@ public:
 	int  GetWidth() const { return m_nWidth; }
 	int  GetHeight() const { return m_nHeight; }
 
-protected:
+	void Show(bool bShow) { m_bShow = bShow; }
+
+public:
 	virtual void OnFrame(float fDelta);
 	virtual void OnRender();
+	virtual void OnKey(int nKey);
 
 protected:
 	std::set<CObject *>			m_childrenSet;
@@ -32,6 +35,7 @@ protected:
 	int							m_nPosY;
 	int							m_nWidth;
 	int							m_nHeight;
+	bool						m_bShow;
 };
 
 #endif

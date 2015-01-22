@@ -154,6 +154,18 @@ SOURCE=..\Source\Core\Sprite.cpp
 SOURCE=..\Source\Core\Sprite.h
 # End Source File
 # End Group
+# Begin Group "Tank"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\Source\Tank\Tank.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\Tank\Tank.h
+# End Source File
+# End Group
 # End Group
 # End Target
 # End Project

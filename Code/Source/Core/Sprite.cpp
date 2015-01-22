@@ -17,5 +17,8 @@ CSprite::~CSprite()
 
 void CSprite::OnRender()
 {
-	m_pSprite->Render(m_nPosX, m_nPosY);
+	if (m_bShow)
+	{
+		m_pSprite->Render(m_nPosX, m_nPosY);
+	}
 }

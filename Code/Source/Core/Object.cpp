@@ -6,6 +6,7 @@ CObject::CObject()
 	m_nPosY   = 0;
 	m_nWidth  = 0;
 	m_nHeight = 0;
+	m_bShow   = true;
 }
 
 CObject::~CObject()
@@ -46,18 +47,36 @@ void CObject::SetHeight(int nHeight)
 
 void CObject::OnFrame(float fDelta)
 {
-	std::set<CObject *>::const_iterator it = m_childrenSet.begin();
-	for (; it != m_childrenSet.end(); ++it)
+	if (m_bShow)
 	{
-		(*it)->OnFrame(fDelta);
+		std::set<CObject *>::const_iterator it = m_childrenSet.begin();
+		for (; it != m_childrenSet.end(); ++it)
+		{
+			(*it)->OnFrame(fDelta);
+		}
 	}
 }
 
 void CObject::OnRender()
 {
-	std::set<CObject *>::const_iterator it = m_childrenSet.begin();
-	for (; it != m_childrenSet.end(); ++it)
+	if (m_bShow)
 	{
-		(*it)->OnRender();
+		std::set<CObject *>::const_iterator it = m_childrenSet.begin();
+		for (; it != m_childrenSet.end(); ++it)
+		{
+			(*it)->OnRender();
+		}
+	}
+}
+
+void CObject::OnKey(int nKey)
+{
+	if (m_bShow)
+	{
+		std::set<CObject *>::const_iterator it = m_childrenSet.begin();
+		for (; it != m_childrenSet.end(); ++it)
+		{
+			(*it)->OnKey(nKey);
+		}
 	}
 }

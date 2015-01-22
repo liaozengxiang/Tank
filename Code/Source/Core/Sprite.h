@@ -15,7 +15,7 @@ public:
 	CSprite(HTEXTURE hTexture, int x, int y, int w, int h);
 	virtual ~CSprite();
 
-protected:
+public:
 	virtual void OnRender();
 
 protected:

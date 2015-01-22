@@ -117,6 +117,17 @@ bool CApplication::OnInitResource()
 	return true;
 }
 
+void CApplication::OnFrame(float fDelta)
+{
+	int nKey = m_pHGE->Input_GetKey();
+	if (nKey)
+	{
+		CObject::OnKey(nKey);
+	}
+
+	CObject::OnFrame(fDelta);
+}
+
 void CApplication::OnRender()
 {
 	m_pHGE->Gfx_BeginScene();
@@ -124,4 +135,9 @@ void CApplication::OnRender()
 
 	CObject::OnRender();
 	m_pHGE->Gfx_EndScene();
+}
+
+HTEXTURE CApplication::LoadTexture(const char *lpszImage)
+{
+	return m_pInstance->m_pHGE->Texture_Load(lpszImage);
 }

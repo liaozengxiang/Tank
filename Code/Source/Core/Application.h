@@ -31,11 +31,15 @@ public:
 	bool Initialize();
 	bool Start();
 
+public:
+	static HTEXTURE LoadTexture(const char *lpszImage);
+
 protected:
-	virtual bool  OnInitInstance(STARTUP_INFO *pInfo);
-	virtual void  OnExitInstance();
-	virtual bool  OnInitResource();
-	virtual void  OnRender();
+	virtual bool OnInitInstance(STARTUP_INFO *pInfo);
+	virtual void OnExitInstance();
+	virtual bool OnInitResource();
+	virtual void OnFrame(float fDelta);
+	virtual void OnRender();
 
 protected:
 	static CApplication* GetInstance() { return m_pInstance; }
