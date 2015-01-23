@@ -119,10 +119,13 @@ bool CApplication::OnInitResource()
 
 void CApplication::OnFrame(float fDelta)
 {
-	int nKey = m_pHGE->Input_GetKey();
-	if (nKey)
+	int nValidKey[] = { HGEK_UP, HGEK_RIGHT, HGEK_DOWN, HGEK_LEFT, HGEK_CTRL, 0 };
+	for (int i = 0; nValidKey[i] != 0; ++i)
 	{
-		CObject::OnKey(nKey);
+		if (m_pHGE->Input_GetKeyState(nValidKey[i]))
+		{
+			CObject::OnKey(nValidKey[i]);
+		}
 	}
 
 	CObject::OnFrame(fDelta);

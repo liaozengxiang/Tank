@@ -80,3 +80,21 @@ void CObject::OnKey(int nKey)
 		}
 	}
 }
+
+bool CObject::HitTest(CObject *pOther) const
+{
+	RECT rect1;
+	rect1.left   = m_nPosX;
+	rect1.top    = m_nPosY;
+	rect1.right  = rect1.left + m_nWidth;
+	rect1.bottom = rect1.top + m_nHeight;
+
+	RECT rect2;
+	rect2.left   = pOther->m_nPosX;
+	rect2.top    = pOther->m_nPosY;
+	rect2.right  = rect2.left + pOther->m_nWidth;
+	rect2.bottom = rect2.top + pOther->m_nHeight;
+
+	RECT rect;
+	return IntersectRect(&rect, &rect1, &rect2) ? true : false;
+}

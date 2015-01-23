@@ -2,21 +2,15 @@
 #define ___TANK__20150122___
 
 #include "../Core/Sprite.h"
+#include "../Core/Moveable.h"
+#include "../Bullet/Bullet.h"
 #include <vector>
 
-namespace TANK_DIRECTION
-{
-	enum ETankDirection { UP, RIGHT, DOWN, LEFT };
-}
-
-class CTank : public CObject
+class CTank : public CMoveable
 {
 public:
-	CTank(const char *lpszTankImage, int x, int y, int nWidth, int nHeight);
+	CTank(const char *lpszTankImage, int x, int y, int nWidth, int nHeight, int nSpeed, const RECT *pMoveableRect);
 	virtual ~CTank();
-
-public:
-	void ChangeDirection(TANK_DIRECTION::ETankDirection eDirection);
 
 protected:
 	virtual void OnFrame(float fDelta);
@@ -24,9 +18,10 @@ protected:
 	virtual void OnKey(int nKey);
 
 protected:
-	HTEXTURE							m_hTexture;				// 坦克的纹理，从上至下为: 坦克向上、坦克向右、坦克向下、坦克向左
-	TANK_DIRECTION::ETankDirection		m_eDirection;			// 坦克目前的方向
-	std::vector<CSprite *>				m_vecSprite;			// 4 个方向的坦克精灵
+	HTEXTURE							m_hTexture;				// 坦克的纹理，二列从上至下为: 坦克向上、坦克向右、坦克向下、坦克向左
+	std::vector<CSprite *>				m_vecSprite[2];			// 4 个方向的坦克精灵
+	int									m_nShowIndex;			// 当前显示的是第几组，由 0-1 变换
+	CBullet*							m_pBullets[2];
 };
 
 #endif

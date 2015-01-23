@@ -139,6 +139,22 @@ SOURCE=..\Source\Core\Application.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\Source\Core\Flyable.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\Core\Flyable.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\Core\Moveable.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\Core\Moveable.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\Source\Core\Object.cpp
 # End Source File
 # Begin Source File
@@ -164,6 +180,18 @@ SOURCE=..\Source\Tank\Tank.cpp
 # Begin Source File
 
 SOURCE=..\Source\Tank\Tank.h
+# End Source File
+# End Group
+# Begin Group "Bullet"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\Source\Bullet\Bullet.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\Bullet\Bullet.h
 # End Source File
 # End Group
 # End Group

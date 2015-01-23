@@ -1,6 +1,7 @@
 #ifndef ___OBJECT__20150122___
 #define ___OBJECT__20150122___
 
+#include <windows.h>
 #pragma warning(disable : 4786)
 #include <set>
 
@@ -16,6 +17,8 @@ public:
 	
 	void MoveTo(int x, int y);
 	void Offset(int dx, int dy);
+	int  GetLeft() const { return m_nPosX; }
+	int  GetTop() const { return m_nPosY; }
 
 	void SetWidth(int nWidth);
 	void SetHeight(int nHeight);
@@ -23,6 +26,7 @@ public:
 	int  GetHeight() const { return m_nHeight; }
 
 	void Show(bool bShow) { m_bShow = bShow; }
+	bool HitTest(CObject *pOther) const;
 
 public:
 	virtual void OnFrame(float fDelta);
