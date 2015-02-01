@@ -193,6 +193,14 @@ SOURCE=..\Source\Bullet\Bullet.cpp
 
 SOURCE=..\Source\Bullet\Bullet.h
 # End Source File
+# Begin Source File
+
+SOURCE=..\Source\Bullet\PlayerBullet.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\Source\Bullet\PlayerBullet.h
+# End Source File
 # End Group
 # End Group
 # End Target

@@ -96,7 +96,7 @@ void CTank::OnKey(int nKey)
 
 			HGE *pHGE = hgeCreate(HGE_VERSION);
 			HTEXTURE hTexture = pHGE->Texture_Load("Resource/Image/Bullet.bmp");
-			CBullet *pBullet = new CBullet(hTexture, 2*8, 0, 8, 8, 1000, (CFlyable::EDirection)(int)m_eDirection, &rect);
+			CBullet *pBullet = new CBullet(hTexture, 2*8, 0, 8, 8, 300, (CFlyable::EDirection)(int)m_eDirection, &rect);
 			pBullet->MoveTo(m_nPosX + m_nWidth / 2 - pBullet->GetWidth() / 2, m_nPosY + m_nHeight / 2 - pBullet->GetHeight() / 2);
 			AddChild(pBullet);
 
